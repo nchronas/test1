@@ -1,6 +1,6 @@
-FROM resin/rpi-raspbian:wheezy
+FROM resin/rpi-raspbian:latest
 RUN apt-get update
-RUN apt-get install -y python python-pip python-dbus
-ADD server_example.py /app/
-RUN echo 'python /app/server_example.py' > /start
-RUN chmod +x /start
+RUN apt-get install -y python python-pip python-dev python-dbus
+RUN apt-get install -y dropbear
+COPY . /app
+CMD ["bash", "/app/start.sh"]
